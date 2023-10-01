@@ -16,19 +16,19 @@
         // Connect to SQLite database
        // $db = new PDO('sqlite:/var/db/printsheetmaker.db');
 
-try {
-    // Attempt to create a PDO instance and connect to the SQLite database
-    $db = new PDO('sqlite:/var/db/printsheetmaker.db');
-    
-    // Set PDO to throw exceptions on error
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // If successful, you can output a success message
-   echo "Connected to the SQLite database successfully.";
-} catch (PDOException $e) {
-    // If an error occurs during connection, catch the exception and display an error message
-    echo "Connection failed: " . $e->getMessage();
-}
+        try {
+            // Attempt to create a PDO instance and connect to the SQLite database
+            $db = new PDO('sqlite:/var/db/printsheetmaker.db');
+            
+            // Set PDO to throw exceptions on error
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // If successful, you can output a success message
+        echo "Connected to the SQLite database successfully.";
+        } catch (PDOException $e) {
+            // If an error occurs during connection, catch the exception and display an error message
+            echo "Connection failed: " . $e->getMessage();
+        }
 
 
 
