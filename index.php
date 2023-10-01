@@ -1,31 +1,35 @@
 <?php
 
- $path = '/var/config/printsheetmaker/config.php';
+$path = '/var/config/printsheetmaker/config.php';
 
- if (file_exists($path)) {
+if (file_exists($path)) {
     require_once($path);
 
-    $db_host = getenv('DB_HOST');
-    echo "DB_HOST: $db_host <br>";
-   
-   try {
-       // Attempt to create a PDO instance and connect to the SQLite database
-       $db = new PDO("sqlite:$db_host");
-   
-       // Set PDO to throw exceptions on error
-       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   
-       // If successful, you can output a success message
-       //echo "Connected to the SQLite database successfully.";
-   } catch (PDOException $e) {
-       // If an error occurs during connection, catch the exception and display an error message
-       echo "Connection failed: " . $e->getMessage();
-   }
+    // Check if the DB_HOST environment variable is set
+    if (isset($db_host)) {
+        echo "DB_HOST is set: $db_host <br>";
 
+        try {
+            // Attempt to create a PDO instance and connect to the SQLite database
+            $db = new PDO("sqlite:$db_host");
 
+            // Set PDO to throw exceptions on error
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // If successful, you can output a success message
+            //echo "Connected to the SQLite database successfully.";
+        } catch (PDOException $e) {
+            // If an error occurs during connection, catch the exception and display an error message
+            echo "Connection failed: " . $e->getMessage();
+        }
+    } else {
+        echo "DB_HOST environment variable is not set.";
+    }
 } else {
     echo "File does not exist at: $path";
 }
+?>
+
 
 function generateCardList($db) {
     // Fetch all records from the database
