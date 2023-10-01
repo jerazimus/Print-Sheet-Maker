@@ -54,11 +54,7 @@ function generateCardList($db) {
     <h4 "logo">Print Sheet Maker</h4>
     <p class="sub-title">Create custom playing cards. Easiest way for at home printing on US Letter paper.</p>
     <h5>Card List</h5>
-    <ul>
-        <?php
-            generateCardList($db);
-        ?>
-    </ul>
+   
 
 </div>
 
