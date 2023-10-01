@@ -8,7 +8,7 @@ if (file_exists($path)) {
     // Check if the DB_HOST constant is defined
     if (defined('DB_HOST')) {
         $db_host = DB_HOST;
-        echo "DB_HOST is set: $db_host <br>";
+        // echo "DB_HOST is set: $db_host <br>";
 
         try {
             // Attempt to create a PDO instance and connect to the SQLite database
@@ -48,6 +48,21 @@ if (file_exists($path)) {
     <h4 "logo">Print Sheet Maker</h4>
     <p class="sub-title">Create custom playing cards. Easiest way for at home printing on US Letter paper.</p>
     <h5>Card List</h5>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Card Name</th>
+            <th>Card Text</th>
+        </tr>
+
+        <?php
+            $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
+            // Display records in a table
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr><td>{$row['id']}</td><td>{$row['card_name']}</td><td>{$row['card_text']}</td></tr>";
+            }
+        ?>
+    </table>
    
 
 </div>
