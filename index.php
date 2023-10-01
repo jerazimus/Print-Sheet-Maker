@@ -1,3 +1,10 @@
+<?php
+
+require_once('/var/config/printsheetmaker/config.php');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +20,41 @@
     <h4 "logo">Print Sheet Maker</h4>
     <p class="sub-title">Create custom playing cards. Easiest way for at home printing on US Letter paper.</p>
     <h5>Card List</h5>
-    <?php for ($i = 0; $i < 9; $i++){ ?>
-        <p>Card <?= $i ?></p>
-    <?php } ?>    
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Card Name</th>
+            <th>Card Text</th>
+        </tr>
+
+        <?php
+        // Connect to SQLite database
+       // $db = new PDO('sqlite:/var/db/printsheetmaker.db');
+
+        try {
+            // Attempt to create a PDO instance and connect to the SQLite database
+            $db = new PDO("sqlite:$db_host");            
+            // Set PDO to throw exceptions on error
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // If successful, you can output a success message
+        echo "Connected to the SQLite database successfully.";
+        } catch (PDOException $e) {
+            // If an error occurs during connection, catch the exception and display an error message
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+
+
+        // Fetch all records from the database
+        $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
+
+        // Display records in a table
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr><td>{$row['id']}</td><td>{$row['card_name']}</td><td>{$row['card_text']}</td></tr>";
+        }
+        ?>
+    </table> 
 </div>
 
 <div class="grid-container">
