@@ -5,13 +5,14 @@ $path = '/var/config/printsheetmaker/config.php';
 if (file_exists($path)) {
     require_once($path);
 
-    // Check if the DB_HOST environment variable is set
-    if (isset($db_host)) {
+    // Check if the DB_HOST constant is defined
+    if (defined('DB_HOST')) {
+        $db_host = DB_HOST;
         echo "DB_HOST is set: $db_host <br>";
 
         try {
             // Attempt to create a PDO instance and connect to the SQLite database
-            $db = new PDO("sqlite:$db_host");
+            $db = new PDO($db_host);
 
             // Set PDO to throw exceptions on error
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -23,7 +24,7 @@ if (file_exists($path)) {
             echo "Connection failed: " . $e->getMessage();
         }
     } else {
-        echo "DB_HOST environment variable is not set.";
+        echo "DB_HOST constant is not defined.";
     }
 } else {
     echo "File does not exist at: $path";
@@ -31,17 +32,6 @@ if (file_exists($path)) {
 ?>
 
 
-function generateCardList($db) {
-    // Fetch all records from the database
-    $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
-    // Display records in a list
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li><strong>ID:</strong> {$row['id']}<br><strong>Card Name:</strong> {$row['card_name']}<br><strong>Card Text:</strong> {$row['card_text']}</li>";
-    }
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
