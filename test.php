@@ -18,6 +18,8 @@
 
         try {
             // Attempt to create a PDO instance and connect to the SQLite database
+            // $db_host = getenv('DB_HOST');
+            //$db = new PDO("sqlite:$db_host");   
             $db = new PDO('sqlite:/var/db/printsheetmaker.db');
             
             // Set PDO to throw exceptions on error
@@ -30,6 +32,7 @@
             echo "Connection failed: " . $e->getMessage();
         }
 
+ 
 
 
         // Fetch all records from the database
