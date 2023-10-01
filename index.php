@@ -1,6 +1,22 @@
 <?php
 
  require_once('/var/config/printsheetmaker/config.php');
+ $db_host = getenv('DB_HOST');
+ echo "DB_HOST: $db_host <br>";
+
+try {
+    // Attempt to create a PDO instance and connect to the SQLite database
+    $db = new PDO("sqlite:$db_host");
+
+    // Set PDO to throw exceptions on error
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // If successful, you can output a success message
+    echo "Connected to the SQLite database successfully.";
+} catch (PDOException $e) {
+    // If an error occurs during connection, catch the exception and display an error message
+    echo "Connection failed: " . $e->getMessage();
+}
 
 
 ?>
