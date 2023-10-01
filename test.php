@@ -32,9 +32,6 @@
             echo "Connection failed: " . $e->getMessage();
         }
 
- 
-
-
         // Fetch all records from the database
         $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
 
