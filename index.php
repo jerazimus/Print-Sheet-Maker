@@ -45,22 +45,17 @@
     <h4 "logo">Print Sheet Maker</h4>
     <p class="sub-title">Create custom playing cards. Easiest way for at home printing on US Letter paper.</p>
     <h5>Card List</h5>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Card Name</th>
-            <th>Card Text</th>
-        </tr>
+    <ul>
+    <?php
+        // Fetch all records from the database
+        $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
+        // Display records in a list
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<li><strong>ID:</strong> {$row['id']}<br><strong>Card Name:</strong> {$row['card_name']}<br><strong>Card Text:</strong> {$row['card_text']}</li>";
+        }
+    ?>
+</ul>
 
-        <?php
-            // Fetch all records from the database
-            $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
-            // Display records in a table
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr><td>{$row['id']}</td><td>{$row['card_name']}</td><td>{$row['card_text']}</td></tr>";
-            }
-        ?>
-    </table>
 </div>
 
 <div class="grid-container">
