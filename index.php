@@ -31,6 +31,7 @@
         // Connect to SQLite database
         try {
             // Attempt to create a PDO instance and connect to the SQLite database
+            $db_host = getenv('DB_HOST');
             $db = new PDO("sqlite:$db_host");            
             // Set PDO to throw exceptions on error
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
