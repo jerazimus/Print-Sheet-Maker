@@ -1,6 +1,6 @@
 <?php
 
-require_once('/var/config/printsheetmaker/config.php');
+ require_once('/var/config/printsheetmaker/config.php');
 
 
 ?>
@@ -29,8 +29,6 @@ require_once('/var/config/printsheetmaker/config.php');
 
         <?php
         // Connect to SQLite database
-       // $db = new PDO('sqlite:/var/db/printsheetmaker.db');
-
         try {
             // Attempt to create a PDO instance and connect to the SQLite database
             $db = new PDO("sqlite:$db_host");            
@@ -43,8 +41,6 @@ require_once('/var/config/printsheetmaker/config.php');
             // If an error occurs during connection, catch the exception and display an error message
             echo "Connection failed: " . $e->getMessage();
         }
-
-
 
         // Fetch all records from the database
         $stmt = $db->query('SELECT id, card_name, card_text FROM cards');
@@ -87,12 +83,6 @@ require_once('/var/config/printsheetmaker/config.php');
   </div>
 </div>
 
-
-<!-- <div class="tray no-print">
-    <p>Card List</p>
-    <p>Print</p>
-    <p>Load previous print sheets</p>
-</div> -->
 
 
     <style>
