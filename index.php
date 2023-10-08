@@ -32,7 +32,6 @@ if (file_exists($path)) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
