@@ -1,0 +1,14 @@
+# Ignore system files
+.DS_Store
+
+# Ignore log files
+*.log
+
+# Ignore cache directories
+cache/
+
+# Ignore configuration files with sensitive information
+config.ini
+
+# Ignore the phpmyadmin folder
+phpmyadmin/
