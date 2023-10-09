@@ -12,3 +12,9 @@ config.ini
 
 # Ignore the phpmyadmin folder
 phpmyadmin/
+
+#ignore all .db files
+*.db
+
+#ignore all var/ files
+var/
